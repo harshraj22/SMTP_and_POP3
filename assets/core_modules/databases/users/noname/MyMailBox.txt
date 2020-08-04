@@ -1,0 +1,24 @@
+To: noname@gmail.com
+senders_email: newWorker@gmail.com
+receiving_date_time: 2020-03-07 13:50:12
+subject: No new subject
+message: This is just a random message. Ignore this message if possible.
+.
+To: noname@gmail.com
+senders_email: harshraj@gmail.com
+receiving_date_time: 2020-03-07 15:52:51
+subject: sub
+message: mess
+.
+To: noname@gmail.com
+senders_email: harshraj@gmail.com
+receiving_date_time: 2020-03-07 16:47:07
+subject: Subject
+message: Message Body.
+.
+To: noname@gmail.com
+senders_email: harshraj@gmail.com
+receiving_date_time: 2020-03-09 14:21:20
+subject: Test Assignment
+message: This mail is to verify the assignment.
+.

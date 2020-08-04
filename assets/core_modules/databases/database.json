@@ -1,0 +1,57 @@
+{
+    "Credentials": {
+        "harshraj": "pass",
+        "noname": "pass",
+        "newWorker": "pass"
+    },
+    "Mails": {
+        "newWorker": [
+            {
+                "senders_email": "harshraj22@gamil.com",
+                "receiving_date_time": "2020-03-07 11:37:06",
+                "subject": "Work",
+                "message": "You need to work to be some."
+            },
+            {
+                "senders_email": "harshraj@gmail.com",
+                "receiving_date_time": "2020-03-11 16:20:44",
+                "subject": "sub",
+                "message": "mail"
+            }
+        ],
+        "noname": [
+            {
+                "senders_email": "newWorker@gmail.com",
+                "receiving_date_time": "2020-03-07 13:50:12",
+                "subject": "No new subject",
+                "message": "This is just a random message. Ignore this message if possible."
+            },
+            {
+                "senders_email": "harshraj@gmail.com",
+                "receiving_date_time": "2020-03-07 15:52:51",
+                "subject": "sub",
+                "message": "mess"
+            },
+            {
+                "senders_email": "harshraj@gmail.com",
+                "receiving_date_time": "2020-03-07 16:47:07",
+                "subject": "Subject",
+                "message": "Message Body."
+            },
+            {
+                "senders_email": "harshraj@gmail.com",
+                "receiving_date_time": "2020-03-09 14:21:20",
+                "subject": "Test Assignment",
+                "message": "This mail is to verify the assignment."
+            }
+        ],
+        "harshraj": [
+            {
+                "senders_email": "harsh@gmail.com",
+                "receiving_date_time": "2020-03-07 13:44:25",
+                "subject": "subject",
+                "message": "message."
+            }
+        ]
+    }
+}
