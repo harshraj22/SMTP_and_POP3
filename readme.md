@@ -1,4 +1,5 @@
 
+
 ### How to use:
 ```bash
 python3 180010017_mailclient.py -ip <your ip> -p <your port>             
@@ -18,18 +19,18 @@ Remember, both mailclient and pop3server can't run on same port at same time. Al
 
 #### Username:
 >
-if your username is 'user', then user email as 'user@gmail.com', and send emails only to user who exists in 'user.txt' else its directory doesn't exists and hence no data will be saved.
+if your username is `user`, then user email as `user@gmail.com`, and send emails only to user who exists in `user.txt` else its directory doesn't exists and hence no data will be saved.
              
              
 #### User's directory (MyMailBox.txt):
 >
-it is in 'assets/core_modules/databases/users/'             
-It has directory with name as name of all users, containing a file named 'MyMailBox.txt'             
+it is in `assets/core_modules/databases/users/`             
+It has directory with name as name of all users, containing a file named `MyMailBox.txt`             
 
 
 #### Actual data handling:
 >
-Actual data handling occurs from 'database.json' file in 'assets/core_modules/databases/' and hence you are not expected to alter the contents of 'user.txt'
+Actual data handling occurs from `database.json` file in `assets/core_modules/databases/` and hence you are not expected to alter the contents of `user.txt`.
 
 
 #### Smtp and Pop3 server:
