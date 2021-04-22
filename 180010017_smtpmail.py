@@ -4,10 +4,10 @@ import argparse
 from assets.core_modules.smtp.custom_smtp import is_valid_port, VALID_PORT_RANGE, SimpleMailServer
 from assets.core_modules.exeptions.custom_exeptions import CustomConnectionError
 
+
 def Main():
-    '''
-        Main function to interact with user via commandline
-    '''
+    ''' Main function to interact with user via commandline '''
+
     parser = argparse.ArgumentParser(description='Command Line Interface to accept port number on which server runs.')
     parser.add_argument('-p', '--port', help='The port number to be used by server', type=int, required=True)
 
@@ -18,7 +18,7 @@ def Main():
     if not is_valid_port(args.port):
         print(f'\tThe port number is not valid.\n\tExpecting a valid port number in range: {str(VALID_PORT_RANGE)}.\n\tPlease try again.')
         sys.exit(1)
-    
+
     # The port entered by user is valid, Try creating connection
     mailserver = SimpleMailServer(port=args.port)
 

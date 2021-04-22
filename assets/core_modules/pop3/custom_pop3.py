@@ -21,6 +21,7 @@ POP3_COMMANDS = '''
 
 POP3_COMMANDS_LIST = ['STAT', 'LIST', 'RETR', 'DELE', 'QUIT']
 
+
 class SimplePop3Server:
     def __init__(self, port):
         self.port = port
@@ -32,10 +33,9 @@ class SimplePop3Server:
         return f'SimplePop3Server Socket on port {self.port}'
 
     def connect(self):
-        '''
-            This method creates a socket connection and binds to the port provided
-            while instantiating object of SimplePop3Server class
-        '''
+        ''' This method creates a socket connection and binds to the port provided
+            while instantiating object of SimplePop3Server class '''
+
         # logic for bind, gethostname, listen etc
         self.cur_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # self.host = socket.gethostname()
@@ -57,10 +57,9 @@ class SimplePop3Server:
         return True
 
     def operate_on_inbox(self):
-        '''
-            Once the user is verified, this method is invoked. It provides
-            client interface to check all mails in inbox, and delete them.
-        '''
+        ''' Once the user is verified, this method is invoked. It provides
+            client interface to check all mails in inbox, and delete them. '''
+
         print('Show user inbox and let operate for read/delete operation')
 
     def on_new_client(self, client_socket, client_address):
@@ -72,6 +71,7 @@ class SimplePop3Server:
             @param client_socket : Socket object used to send and recieve data
             @param client_address : address bound to socket on the other end of connection
         '''
+
         current_username = client_socket.recv(1024).decode('utf-8')
         print(f'SimplePop3Server: Recivied a connection from user {current_username} at {client_address}')
         try:
@@ -82,10 +82,10 @@ class SimplePop3Server:
         # While user doesn't types 'QUIT', keep taking request
         while True:
             user_response = client_socket.recv(1024).decode('utf-8')
-            
+
             # on server side, print what user requested
             print(f'{current_username}\'s response: {user_response}')
-            
+
             # if user requests something that is not in list of POP3_COMMANDS_LIST
             if user_response[:4] not in POP3_COMMANDS_LIST:
                 client_socket.send(f'Command not identified. Please enter again.'.encode())
@@ -122,15 +122,13 @@ class SimplePop3Server:
                 break            
         print(f'Client {current_username} disconnected.')
 
-
     def accept(self):
-        '''
-            This method accepts connections from the clients and creates separate threads for
-            each new client
-        '''
+        ''' This method accepts connections from the clients and creates
+         separate threads for each new client '''
+
         # logic for infinite loop reciving messages, handle keyboard error (user enters <C-D>, exit peacefully)
         self.cur_socket.listen(MAX_ALLOWED_CLIENT)
-        
+
         print(f'SimplePop3Server: Waiting for connection on port {self.port} and ip {self.host if len(self.host) else "localhost"}')
         # Infinite loop to keep on listening for requests
         while True:
@@ -141,7 +139,7 @@ class SimplePop3Server:
                 print(f'\n\nKeyboard Interuption ! Closing server.\nThanks for connecting.')
                 self.cur_socket.close()
                 break
-            except:
+            except Exception as e:
                 print(f'Some error occured. Closing Socket.')
                 self.cur_socket.close()
                 break

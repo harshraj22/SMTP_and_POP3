@@ -23,12 +23,13 @@ MAX_ALLOWED_CLIENT = 5
 
 
 def is_valid_port(port):
-    """ 
+    """
         Function to check if given port is allowed for socket to be connected
 
         @param port : int denoting the port to be connected
         return : boolean denoting if passed port number is valid
     """
+
     start, end = VALID_PORT_RANGE
     # check if port is an int
     try:
@@ -83,6 +84,7 @@ class SimpleMailServer:
             @param client_socket : Socket object used to send and recieve data
             @param client_address : address bound to socket on the other end of connection
         """
+
         print(f"SimpleMailServer: Recivied a connection from {client_address}")
         mail = client_socket.recv(1024)
         cur_mail = pickle.loads(mail)
@@ -103,10 +105,9 @@ class SimpleMailServer:
         client_socket.close()
 
     def accept(self):
-        """
-            This method accepts connections from the clients and creates separate threads for
-            each new client
-        """
+        """ This method accepts connections from the clients and creates
+         separate threads for each new client """
+
         self.cur_socket.listen(MAX_ALLOWED_CLIENT)
 
         print(f"SimpleMailServer: Waiting for connection on port {self.port}")
@@ -123,7 +124,7 @@ class SimpleMailServer:
                 )
                 self.cur_socket.close()
                 break
-            except:
+            except Exception as e:
                 print(f"Some error occured. Closing Socket.")
                 self.cur_socket.close()
                 break

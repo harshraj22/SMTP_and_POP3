@@ -32,10 +32,10 @@ DATABASE_FORMAT = '''
 current_dir = os.path.dirname(os.path.realpath(__file__))
 DATABASE_PATH = os.path.join(current_dir, 'database.json')
 
+
 class DatabaseHandler:
-    '''
-        This class provides methods to query/update/delete data from database.json (used as database here)
-    '''
+    ''' This class provides methods to query/update/delete data from database.json (used as database here) '''
+
     database = '_'
 
     def __init__(self):
@@ -55,10 +55,15 @@ class DatabaseHandler:
 
     @classmethod
     def is_valid_user(cls, username, password):
-        '''
-            checks if given credentials are valid.
-            Returns a boolean value
-        '''
+        """ checks if given credentials are valid.
+
+        Args:
+            username (str): Username
+            password (str): Password
+
+        Returns:
+            [Bool]: If user is valid
+        """
         cls.load_data()
         if username not in cls.database['Credentials']:
             return False
@@ -68,23 +73,20 @@ class DatabaseHandler:
 
     @staticmethod
     def verify_or_create(receivers_email):
-        '''
-            check if workspace for user whose email address is provided exists
-            if it doesn't exists, create one such
-        '''
+        ''' check if workspace for user whose email address is provided exists
+         if it doesn't exists, create one such '''
+
         print(f'Verifying existence of email {receivers_email}')
-        return None
 
     @classmethod
     def save_mail(cls, mail):
-        '''
-            Recieves a Mail object sterlised by pickle, and saves it at corresponding
-            place
-        '''
+        ''' Recieves a Mail object sterlised by pickle, and saves it at 
+        corresponding place '''
+
         # check for format and dump it to json file
         mail = pickle.loads(mail)
         print(f'\nRecieved mail: \n From: {mail.username}\n To: {mail.receivers_email}\n About: {mail.subject}\n Details: {mail.message}\n')
-        
+
         DatabaseHandler.verify_or_create(mail.receivers_email)
 
         # Now as workspace presence is confirmed, dump the email data to the database
@@ -96,7 +98,7 @@ class DatabaseHandler:
         mail_as_dict['receiving_date_time'] = f'{datetime.now().replace(microsecond=0)}' 
         mail_as_dict['subject'] = mail.subject
         mail_as_dict['message'] = mail.message
-        
+
         cls.database['Mails'][mail.username].append(mail_as_dict)
         print(f'Saving the mail.')
 
@@ -104,13 +106,11 @@ class DatabaseHandler:
             json.dump(cls.database, f, indent=4)
         print(f'Mail Successfully Saved.\n')
         cls.dump_all()
-        
 
     @classmethod
     def get_inbox_of(cls, username):
-        '''
-            returns list of all mails of the user provided as argument
-        '''
+        ''' returns list of all mails of the user provided as argument '''
+
         cls.load_data()
         if username not in cls.database['Mails']:
             raise UserDoesNotExists('Given User Does Not Exists')
@@ -132,9 +132,9 @@ class DatabaseHandler:
 
     @classmethod
     def dump_all(cls):
-        '''
-            Dumps the data (after transaction from user) to the respective text file
-        '''
+        ''' Dumps the data (after transaction from user) to the respective 
+        text file '''
+
         mails = cls.database['Mails']
         for user in mails:
             try:

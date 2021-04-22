@@ -5,10 +5,10 @@ from assets.core_modules.smtp.custom_smtp import is_valid_port, VALID_PORT_RANGE
 from assets.core_modules.exeptions.custom_exeptions import CustomConnectionError
 from assets.core_modules.pop3.custom_pop3 import SimplePop3Server
 
+
 def Main():
-    '''
-        Main function to interact with user via commandline
-    '''
+    ''' Main function to interact with user via commandline '''
+
     parser = argparse.ArgumentParser(description='Command Line Interface to accept port number on which server runs.')
     parser.add_argument('-p', '--port', help='The port number to be used by server', type=int, required=True)
 
@@ -23,7 +23,7 @@ def Main():
     pop3_server = SimplePop3Server(args.port)
     pop3_server.connect()
     pop3_server.accept()
-    
+
     # The port entered by user is valid, Try creating connection
     # mailserver = SimpleMailServer(port=args.port)
 

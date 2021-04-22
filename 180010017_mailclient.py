@@ -13,16 +13,39 @@ USER_OPTIONS = '''
     3.Quit: Quits the program
 '''
 
-def interact_with_user(ip, port):
+
+def authenticate_user():
+    """Collects username and password
+
+    Returns:
+        User: an object of 'User' class 
+    """
     username = input('Enter Name: ')
     password = input('Enter Password: ')
     user = User(username, password)
+
     while not user.is_authenticated:
-        print('Wrong Credentials !\n')
+        print('Wrong Credentials ! Try again.\n')
         username = input('Enter Name: ')
         password = input('Enter Password: ')
         user.update_credentials(username, password)
-    
+
+    return user
+
+
+def interact_with_user(ip, port):
+    """Interacts with user providing them with various options to operate on
+    their mail box.
+
+    Args:
+        ip (Int): Ip address for the connection
+        port (Int): port number for the connection
+
+    Raises:
+        ValueError: If the user selects values different from given options
+    """
+    user = authenticate_user()
+
     while True:
         print(USER_OPTIONS)
         try:
@@ -44,6 +67,7 @@ def interact_with_user(ip, port):
             print(f'Error {e} occured')
             break
 
+
 def Main():
     # For easy parsing of command line arguments
     parser = argparse.ArgumentParser(description='Command Line Argument Parser for client')
@@ -56,7 +80,7 @@ def Main():
 
     # if user doesn't enter a valid port number
 
-    # if user doesn't enter a valid ip address 
+    # if user doesn't enter a valid ip address
 
     interact_with_user(args.ip_address, args.port)
 

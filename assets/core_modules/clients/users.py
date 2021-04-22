@@ -12,6 +12,7 @@ from assets.core_modules.databases.custom_database_handler import DatabaseHandle
 from assets.core_modules.smtp.custom_mail_template import Mail
 from assets.core_modules.pop3.custom_pop3 import POP3_COMMANDS
 
+
 class User:
     def __init__(self, username, password):
         self.username = username
@@ -30,14 +31,15 @@ class User:
         self.is_authenticated = DatabaseHandler().is_valid_user(username, password)
 
     def send_email(self, ip, port):
-        '''
-            Create a connection with smtp server and take input, send
-            import mail class
-            
-            @param: ip : ip address of the socket to which connection is to be 
+        """Create a connection with smtp server and take input, send
+            import mail class]
+
+        Args:
+            ip (Int): ip address of the socket to which connection is to be 
                 established for sending mail (smtp server)
-            @param: port : port of the smtp server
-        '''
+            port (Int): port of the smtp server]
+        """
+
         if not self.is_authenticated:
             print('Unauthenticated User. Cant send mail.')
             return None
@@ -53,7 +55,7 @@ class User:
         try:
             print(f'220 {ip if len(ip) else "127.0.0.1"}')
             mail.take_email_input()
-            
+
             print(f'C: HELO {ip if len(ip) else "127.0.0.1"}')
             print(f'S: 250 OK Hello {ip if len(ip) else "127.0.0.1"}')
             print(f'C: MAIL FROM: {mail.senders_email}')
@@ -75,15 +77,16 @@ class User:
             print(f'Error while sending mail: {e}')
 
     def operate_on_inbox(self, ip, port):
-        '''
-            Provide various options to operate on one's inbox, like deleting,
+        """Provide various options to operate on one's inbox, like deleting,
             reading mails etc, connect to pop3 server and work
-            
-            @param: ip : ip address of the socket to which connection is to be 
+
+        Args:
+            ip (Int): ip address of the socket to which connection is to be 
                 established for sending mail (pop3 server)
-            @param: port : port of the pop3 server
-        '''
-        
+
+            port (Int): port of the pop3 server
+        """
+
         # connect to pop3 server using given ip, port
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
@@ -95,17 +98,14 @@ class User:
         except Exception as e:
             print(f'Error while connecting to server. Please retry later.')
             return None
-        
+
         user_response = ''
-        
+
         while not user_response.startswith('QUIT'):
             print(f'The available commands are: \n {POP3_COMMANDS}')
             user_response = input('Enter command: ')
             s.send(user_response.encode())
             server_response = s.recv(1024).decode('utf-8')
             print(server_response)
-        print('goodbye.') 
+        print('goodbye.')
         s.close()
-
-
-        
