@@ -1,4 +1,4 @@
-Look at [this](https://github.com/harshraj22/SMTP_and_POP3/blob/master/use.md) page for getting started on how to use it.
+Look at [this](https://github.com/harshraj22/SMTP_and_POP3/blob/master/use.md) page for getting started on how to use it and relevant screenshots.
 
 ### SMTP and POP3
 This project aims to mimic the functionality of sending and recieving email in a secure manner using SMTP and POP3 server.
